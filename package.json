@@ -1,0 +1,24 @@
+{
+  "name": "cypressautomation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "parabank-suite-headed": "npx cypress run --spec 'cypress/e2e/Sample/FakerParabank.cy.js' --browser chrome --headed",
+    "parabank-suite-headless": "npx cypress run --spec 'cypress/e2e/Sample/FakerParabank.cy.js'",
+    "saucedemo-suite-headed": "npx cypress run --spec 'cypress/e2e/UI-SauceDemo/loginCheckout.cy.js,cypress/e2e/UI-SauceDemo/loginSauceDemo.cy.js' --browser chrome --headed",
+    "saucedemo-suite-headless": "npx cypress run --spec 'cypress/e2e/UI-SauceDemo/loginCheckout.cy.js,cypress/e2e/UI-SauceDemo/loginSauceDemo.cy.js'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nico",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "cypress": "^14.5.1",
+    "cypress-plugin-api": "^2.11.2"
+  },
+  "devDependencies": {
+    "cypress-downloadfile": "^1.2.4",
+    "cypress-mochawesome-reporter": "^4.0.0"
+  }
+}
