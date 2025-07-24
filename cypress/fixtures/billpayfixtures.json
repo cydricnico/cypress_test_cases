@@ -1,0 +1,11 @@
+{
+  "name": "John Doe",
+  "address": "Mercedes",
+  "city": "Pasig",
+  "state": "Metro Manila",
+  "zipcode": "1234",
+  "phonenumber": "1234567890",
+  "accountnumber": "123456",
+  "verifynumber": "123456",
+  "amount": "300"
+}

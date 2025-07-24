@@ -1,9 +1,6 @@
 ///<reference types="cypress" />
-
-import { getuserData } from '../../support/utils/parabankutils';
-import { getScreenshotWithDate } from '../../support/commands/parabankCommands';
-
-describe("Assert the basic functionalities of the website using Faker", { testIsolation: false }, () => {
+import {getScreenshotWithDate} from '../../support/commands/parabankCommands';
+describe("Assert the basic functionalities of the website using Fixtures", { testIsolation: false }, () => {
   before(() => {
     cy.visit("https://parabank.parasoft.com/parabank/register.htm");
     cy.url().should('contain', 'register.htm');
@@ -32,8 +29,8 @@ describe("Assert the basic functionalities of the website using Faker", { testIs
   });
 
 
-  it("Verify the Registration function", () => {
-    const user = getuserData()
+  it("Register successfully using fixtures", () => {
+    cy.fixture('fixtureTestData').then((user) => {
       cy.visit("https://parabank.parasoft.com/parabank/register.htm");
       cy.get('input[id="customer.firstName"]').type(user.firstName);
       cy.get('input[id="customer.lastName"]').type(user.lastName);
@@ -51,6 +48,7 @@ describe("Assert the basic functionalities of the website using Faker", { testIs
       cy.url().should('include', 'parabank/register.htm');
       cy.getScreenshotWithDate();
     });
+  });
 });
 
 

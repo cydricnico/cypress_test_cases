@@ -1,9 +1,10 @@
 ///<reference types="cypress" />
 
-import { getuserData } from '../../support/utils/parabankutils';
+import { parabankRegistrationPage } from '../../support/pages/registrationPOM';
 import { getScreenshotWithDate } from '../../support/commands/parabankCommands';
+import { getuserData } from '../../support/utils/parabankutils';
 
-describe("Assert the basic functionalities of the website using Faker", { testIsolation: false }, () => {
+describe("Assert the basic functionalities of the website", { testIsolation: false }, () => {
   before(() => {
     cy.visit("https://parabank.parasoft.com/parabank/register.htm");
     cy.url().should('contain', 'register.htm');
@@ -28,29 +29,25 @@ describe("Assert the basic functionalities of the website using Faker", { testIs
     cy.get('input[id="customer.username"]').should('be.visible').and('not.be.disabled');
     cy.get('input[id="customer.password"]').should('be.visible').and('not.be.disabled');
     cy.get('input[id="repeatedPassword"]').should('be.visible').and('not.be.disabled');
-    cy.getScreenshotWithDate();
   });
 
+  it("Verify the registration form", () => {
+    const registrationPage = new parabankRegistrationPage();
+    const user = getuserData();
 
-  it("Verify the Registration function", () => {
-    const user = getuserData()
-      cy.visit("https://parabank.parasoft.com/parabank/register.htm");
-      cy.get('input[id="customer.firstName"]').type(user.firstName);
-      cy.get('input[id="customer.lastName"]').type(user.lastName);
-      cy.get('input[id="customer.address.street"]').type(user.address);
-      cy.get('input[id="customer.address.city"]').type(user.city);
-      cy.get('input[id="customer.address.state"]').type(user.state);
-      cy.get('input[id="customer.address.zipCode"]').type(user.zipCode);
-      cy.get('input[id="customer.phoneNumber"]').type(user.phoneNumber);
-      cy.get('input[id="customer.ssn"]').type(user.ssn);
-      cy.get('input[id="customer.username"]').type(user.username);
-      cy.get('input[id="customer.password"]').type(user.password);
-      cy.get('input[id="repeatedPassword"]').type(user.repeatedPassword);
-      cy.get('[colspan="2"] > .button').should('be.visible').and('not.be.disabled');
-      cy.get('input[value="Register"]').click();
-      cy.url().should('include', 'parabank/register.htm');
-      cy.getScreenshotWithDate();
-    });
+    cy.visit("https://parabank.parasoft.com/parabank/register.htm");
+    registrationPage.fillRegistrationForm(user);
+    registrationPage.submitForm();
+
+  });
+
+  it('Verify the Logout function', () => {
+    Cypress.on('uncaught:exception', () => false); // prevent app errors from failing test
+    cy.visit('https://parabank.parasoft.com/parabank/index.htm');
+    cy.get('#leftPanel > ul > :nth-child(8) > a').click();
+    cy.url().should('include', 'index.htm');
+  });
+
 });
 
 
