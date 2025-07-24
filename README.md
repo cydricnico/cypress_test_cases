@@ -54,6 +54,6 @@ You can run tests using:
 npx cypress open    # GUI mode
 npx cypress run     # Headless mode (CI)
 
-
+💫 Created by: Nico
 
 
