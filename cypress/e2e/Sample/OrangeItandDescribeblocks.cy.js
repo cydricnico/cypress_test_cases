@@ -32,5 +32,6 @@ describe("Login Successfully", () => {
         cy.get('button[type="submit"]').click();
         cy.get('.oxd-alert-content-text').should('be.visible').and('contain', 'Invalid credentials');
         cy.url().should('include', '/auth/login');
+        
     });
 });
