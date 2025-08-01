@@ -48,5 +48,25 @@ describe("Assert the Accounts Overview Page", { testIsolation: false }, () => {
     cy.url().should('include', 'updateprofile.htm');
     cy.getScreenshotWithDate();
   });
+
+  it("Verify the UI of the Update Contact Info page", () => {
+    cy.visit("https://parabank.parasoft.com/parabank/updateprofile.htm");
+    cy.get('#updateProfileForm > .title').should('be.visible').and('contain', 'Update Profile');
+    cy.get(':nth-child(1) > [align="right"] > b').should('be.visible');
+    cy.get(':nth-child(2) > [align="right"] > b').should('be.visible');
+    cy.get(':nth-child(3) > [align="right"] > b').should('be.visible');
+    cy.get(':nth-child(4) > [align="right"] > b').should('be.visible');
+    cy.get(':nth-child(5) > [align="right"] > b').should('be.visible');
+    cy.get(':nth-child(6) > [align="right"] > b').should('be.visible');
+    cy.get(':nth-child(7) > [align="right"] > b').should('be.visible');
+    cy.get(':nth-child(1) > [width="20%"]').should('be.visible');
+    cy.get(':nth-child(2) > [width="20%"]').should('be.visible');
+    cy.get(':nth-child(3) > [width="20%"]').should('be.visible');
+    cy.get(':nth-child(4) > [width="20%"]').should('be.visible');
+    cy.get(':nth-child(5) > [width="20%"]').should('be.visible');
+    cy.get(':nth-child(6) > [width="20%"]').should('be.visible');
+    cy.get(':nth-child(7) > [width="20%"]').should('be.visible');
+    cy.get('[colspan="2"] > .button').should('be.visible');
+  });
 });
 
