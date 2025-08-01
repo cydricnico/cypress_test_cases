@@ -1,8 +1,10 @@
+import 'cypress-plugin-api';
+
 describe('PetStore API - Negative Test Cases', () => {
   const baseUrl = 'https://petstore.swagger.io/v2';
 
   it('GET - 404 Not Found for non-existent user', () => {
-    cy.request({
+    cy.api({
       method: 'GET',
       url: `${baseUrl}/user/nonexistentuser123`,
       failOnStatusCode: false
@@ -13,7 +15,7 @@ describe('PetStore API - Negative Test Cases', () => {
   });
 
   it('POST - 400 Bad Request with malformed JSON', () => {
-    cy.request({
+    cy.api({
       method: 'POST',
       url: `${baseUrl}/user`,
       body: "invalid_payload", // not valid JSON
@@ -38,7 +40,7 @@ describe('PetStore API - Negative Test Cases', () => {
       userStatus: 1
     };
 
-    cy.request({
+    cy.api({
       method: 'PUT',
       url: `${baseUrl}/user/${fakeUser.username}`,
       body: fakeUser,
@@ -52,7 +54,7 @@ describe('PetStore API - Negative Test Cases', () => {
   });
 
   it('DELETE - 200 OK or 404 Not Found when deleting a non-existent user', () => {
-    cy.request({
+    cy.api({
       method: 'DELETE',
       url: `${baseUrl}/user/ghostuser`,
       failOnStatusCode: false
@@ -62,7 +64,7 @@ describe('PetStore API - Negative Test Cases', () => {
   });
 
   it('GET - 404 or 405 Method Not Allowed on /user root endpoint', () => {
-    cy.request({
+    cy.api({
       method: 'GET',
       url: `${baseUrl}/user`, // Shouldn't be allowed
       failOnStatusCode: false
