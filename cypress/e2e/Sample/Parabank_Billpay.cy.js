@@ -2,6 +2,7 @@
 
 import { getuserData } from '../../support/utils/parabankutils';
 import { getScreenshotWithDate } from '../../support/commands/parabankCommands';
+import { parabankBillPayPage } from '../../support/pages/billpayPOM';
 
 describe("Assert the Bill Payment Page", { testIsolation: false }, () => {
   before(() => {
@@ -73,6 +74,11 @@ describe("Assert the Bill Payment Page", { testIsolation: false }, () => {
     cy.get('#validationModel-verifyAccount-empty').should('contain', 'Account number is required.');
     cy.get('#validationModel-amount-empty').should('contain', 'The amount cannot be empty.')
     cy.getScreenshotWithDate();
+  });
+
+  it("Verify the UI of the Bill Payment Service page using POM", () => {
+    const billPayPage = new parabankBillPayPage();
+    billPayPage.UICheckBillPay();
   });
 });
 
