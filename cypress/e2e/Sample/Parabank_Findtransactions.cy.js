@@ -100,5 +100,26 @@ describe("Assert the Find Transactions Page", { testIsolation: false }, () => {
     cy.get('#resultContainer').should('be.visible');
     cy.getScreenshotWithDate();
   });
+
+  it("Verify the UI of the Find Transactions page", () =>  {
+    cy.visit("https://parabank.parasoft.com/parabank/findtrans.htm");
+    cy.get('#formContainer > .title').should('be.visible').and('contain', 'Find Transactions');
+    cy.get('#transactionForm > :nth-child(1) > b').should('be.visible');
+    cy.get('#accountId').should('be.visible').and('not.be.disabled');
+    cy.get(':nth-child(3) > b').should('be.visible')
+    cy.get('#transactionId').should('be.visible').and('not.be.disabled');
+    cy.get('#findById').should('be.visible').and('not.be.disabled');
+    cy.get(':nth-child(7) > b').should('be.visible')
+    cy.get('#transactionDate').should('be.visible').and('not.be.disabled');
+    cy.get('#findByDate').should('be.visible').and('not.be.disabled');
+    cy.get(':nth-child(11) > p > b').should('be.visible')
+    cy.get(':nth-child(11) > div').should('be.visible').and('not.be.disabled');
+    cy.get('#fromDate').should('be.visible').and('not.be.disabled');
+    cy.get('#toDate').should('be.visible').and('not.be.disabled');
+    cy.get('#findByDateRange').should('be.visible').and('not.be.disabled');
+    cy.get(':nth-child(15) > b').should('be.visible');
+    cy.get('#amount').should('be.visible').and('not.be.disabled');
+    cy.get('#findByAmount').should('be.visible').and('not.be.disabled');
+  });
 });
 
