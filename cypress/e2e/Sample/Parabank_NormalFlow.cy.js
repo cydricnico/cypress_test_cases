@@ -4,7 +4,7 @@ import { parabankRegistrationPage } from '../../support/pages/registrationPOM';
 import { getScreenshotWithDate } from '../../support/commands/parabankCommands';
 import { getuserData } from '../../support/utils/parabankutils';
 
-describe("Assert the basic functionalities of the website", { testIsolation: false }, () => {
+describe("Assert the basic functionalities and UI of the website", { testIsolation: false }, () => {
   before(() => {
     cy.visit("https://parabank.parasoft.com/parabank/register.htm");
     cy.url().should('contain', 'register.htm');
@@ -31,14 +31,14 @@ describe("Assert the basic functionalities of the website", { testIsolation: fal
     cy.get('input[id="repeatedPassword"]').should('be.visible').and('not.be.disabled');
   });
 
-  it("Verify the registration form", () => {
+  it("Verify that registration of account is successful using POM", () => {
     const registrationPage = new parabankRegistrationPage();
     const user = getuserData();
 
     cy.visit("https://parabank.parasoft.com/parabank/register.htm");
     registrationPage.fillRegistrationForm(user);
     registrationPage.submitForm();
-
+    registrationPage.UICheckResult(user);
   });
 
   it('Verify the Logout function', () => {
