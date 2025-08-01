@@ -41,5 +41,16 @@ describe("Assert the Transfer Funds Page", { testIsolation: false }, () => {
     cy.url().should('include', 'transfer.htm');
     cy.get('#showError > .title').should('be.visible').and('contain', 'Error!');  
   });
+
+  it("Verify the UI of the Transfer Funds page", () => {
+    cy.visit("https://parabank.parasoft.com/parabank/transfer.htm");
+    cy.get('#showForm > .title').should('be.visible').and('contain', 'Transfer Funds');
+    cy.get('#transferForm > p > b').should('be.visible');
+    cy.get('#transferForm > :nth-child(2)').should('be.visible').and('not.be.disabled');
+    cy.get('#amount').should('be.visible').and('not.be.disabled');
+    cy.get('#fromAccountId').should('be.visible').and('not.be.disabled');
+    cy.get('#toAccountId').should('be.visible').and('not.be.disabled');
+    cy.get(':nth-child(4) > .button').should('be.visible').and('not.be.disabled');
+  });
 });
 
