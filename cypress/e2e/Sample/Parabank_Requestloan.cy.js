@@ -70,5 +70,16 @@ describe("Assert the Request Loan Page", { testIsolation: false }, () => {
     cy.get('#requestLoanError > .title').should('be.visible').and('contain', 'Error!');
   });
 
+  it("Verifies the UI of the Request Loan page", () => {
+    cy.visit("https://parabank.parasoft.com/parabank/requestloan.htm");
+    cy.get('#requestLoanForm > .title').should('be.visible').and('contain', 'Apply for a Loan');
+    cy.get('.form2 > tbody > :nth-child(2) > [align="right"]').should('be.visible');
+    cy.get('.form2 > tbody > :nth-child(3) > [align="right"] > b').should('be.visible');
+    cy.get('#amount').should('be.visible').and('not.be.disabled');
+    cy.get('#downPayment').should('be.visible').and('not.be.disabled');
+    cy.get('#fromAccountId').should('be.visible').and('not.be.disabled');
+    cy.get('[colspan="2"] > .button').should('be.visible').and('not.be.disabled');
+  });
+
 });
 
