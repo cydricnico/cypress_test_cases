@@ -20,4 +20,10 @@ export class parabankRegistrationPage {
     cy.get('input[value="Register"]').click();
     cy.url().should('include', 'parabank/register.htm');
   }
+
+  UICheckResult(user) {
+
+    cy.get('.title').should('contain', `Welcome ${user.username}`);
+    cy.get('#rightPanel > p').should('contain', 'Your account was created successfully. You are now logged in.');
+  }
 }
