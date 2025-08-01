@@ -1,3 +1,5 @@
+import 'cypress-plugin-api';
+
 describe('PetStore User API Tests using different methods', () => {
   const baseUrl = 'https://petstore.swagger.io/v2';
   const username = 'testuser123';
@@ -30,7 +32,7 @@ describe('PetStore User API Tests using different methods', () => {
   it('Update user information successfully', () => {
     const updatedUser = { ...user, firstName: 'Updated', email: 'updated@example.com' };
 
-    cy.request({
+    cy.api({
       method: 'PUT',
       url: `${baseUrl}/user/${username}`,
       body: updatedUser,
@@ -43,7 +45,7 @@ describe('PetStore User API Tests using different methods', () => {
   });
 
   it('Fetch user by username successfully', () => {
-    cy.request({
+    cy.api({
       method: 'GET',
       url: `${baseUrl}/user/${username}`,
       failOnStatusCode: false 
@@ -55,7 +57,7 @@ describe('PetStore User API Tests using different methods', () => {
   });
 
   it('Login user with query parameters successfully', () => {
-    cy.request({
+    cy.api({
       method: 'GET',
       url: `${baseUrl}/user/login`,
       qs: {
@@ -69,13 +71,13 @@ describe('PetStore User API Tests using different methods', () => {
   });
 
   it('Logout user successfully', () => {
-    cy.request(`${baseUrl}/user/logout`).then((res) => {
+    cy.api(`${baseUrl}/user/logout`).then((res) => {
       expect(res.status).to.eq(200);
     });
   });
 
   it('Remove user successfully', () => {
-    cy.request({
+    cy.api({
       method: 'DELETE',
       url: `${baseUrl}/user/${username}`
     }).then((res) => {
